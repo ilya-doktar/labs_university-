@@ -1,9 +1,9 @@
 object MainFormOfLab5: TMainFormOfLab5
   Left = 204
   Top = 209
+  Width = 713
+  Height = 483
   Caption = #1051#1072#1073#1072' '#8470'5'
-  ClientHeight = 444
-  ClientWidth = 680
   Color = clSkyBlue
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -37,10 +37,8 @@ object MainFormOfLab5: TMainFormOfLab5
     Width = 75
     Height = 25
     Caption = #1042#1099#1093#1086#1076
-    DoubleBuffered = True
-    Kind = bkClose
-    ParentDoubleBuffered = False
     TabOrder = 1
+    Kind = bkClose
   end
   object FieldOfPrintResult: TMemo
     Left = 168

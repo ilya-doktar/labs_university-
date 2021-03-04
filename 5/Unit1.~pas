@@ -14,9 +14,9 @@ type
     FieldOfPrintResult: TMemo;
     ButtonClearFieldOfPrintResult: TButton;
     procedure RestrictionOfInput(Sender: TObject; var Key: Char);
-    procedure CalcNumbersGroup(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ButtonClearFieldOfPrintResultClick(Sender: TObject);
+    procedure FieldOfTextExit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -29,6 +29,27 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TMainFormOfLab5.FieldOfTextExit(Sender: TObject);
+var i:integer;
+    ChosenNumLine,Temp:string;
+begin
+  ChosenNumLine:=FieldofText.Text;
+  FieldOfPrintResult.Clear;
+  FieldOfPrintResult.Lines.Add('Полученные комбинации:');
+  Temp:='';
+  for i:=1 to Length(ChosenNumLine) do
+  begin
+    if ChosenNumLine[i]<>' ' then
+      Temp:=Temp+ChosenNumLine[i];
+    if (ChosenNumLine[i]=' ') or (i=Length(ChosenNumLine)) then
+    begin
+      if (Temp<>'') and (not odd(Length(Temp))) then
+        FieldOfPrintResult.Lines.Add(Temp);
+        Temp:='';
+    end;
+  end;
+end;
 
 procedure TMainFormOfLab5.FormCreate(Sender: TObject);
 begin
@@ -45,27 +66,6 @@ begin
   else
     if not (Key in ['0','1',#8,#32]) then
       Key:=#0;
-end;
-
-procedure TMainFormOfLab5.CalcNumbersGroup(Sender: TObject);
-var NumLine,i:integer;
-    ChosenNumLine,Temp:string;
-begin
-  NumLine:=FieldOfText.ItemIndex;
-  ChosenNumLine:=FieldOfText.Items[NumLine];
-  Temp:='';
-  FieldOfPrintResult.Lines.Add('Полученные комбинации:');
-  for i:=1 to Length(ChosenNumLine) do
-    begin
-      if ChosenNumLine[i]<>' ' then
-        Temp:=Temp+ChosenNumLine[i];
-      if (ChosenNumLine=' ') or (i=Length(ChosenNumLine)) then
-        begin
-          if (Temp<>'') and (not odd(Length(Temp))) then
-            FieldOfPrintResult.Lines.Add(Temp);
-          Temp:='';
-        end;
-    end;
 end;
 
 procedure TMainFormOfLab5.ButtonClearFieldOfPrintResultClick(
